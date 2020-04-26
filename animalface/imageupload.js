@@ -8,6 +8,10 @@ function readURL(input) {
             $('.image-title').html(input.files[0].name);
         };
         reader.readAsDataURL(input.files[0]);
+        init().then(()=>{
+            console.log("loading models");
+            predict();
+        });
     } else {
         removeUpload();
     }

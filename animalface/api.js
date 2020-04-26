@@ -28,8 +28,31 @@ async function predict() {
     // addcode
     var faceimage = document.getElementById('face-image');
     const prediction = await model.predict(faceimage, false);
-    console.log(prediction);
-    console.log('max : ' + maxPredictions);
+    
+    prediction.sort((a,b) => parseFloat(b.probability) - parseFloat(a.probability));
+    console.log(prediction[0].className);
+    var resultMessage;
+    switch(prediction[0].className){
+        case "dog":
+            resultMessage = "강아지상";
+            break;
+        case "cat":
+            resultMessage = "고양이상";
+            break;
+        case "rabbit":
+            resultMessage = "토끼상";
+            break;
+        case "dinosaur":
+            resultMessage = "공룡상";
+            break;
+        case "bear":
+            resultMessage = "곰상";
+            break;
+        default:
+            resultMessage = "알수없음";
+            break;
+    }
+    $('.result-message').html(resultMessage);
     for (let i = 0; i < maxPredictions; i++) {
         console.log('class name : ' + prediction[i].className);
         const classPrediction =
