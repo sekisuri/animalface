@@ -21,7 +21,7 @@ async function init() {
         labelContainer.appendChild(document.createElement('div'));
     }
 }
-
+  
 // run the webcam image through the image model
 async function predict() {
     // predict can take in an image, video or canvas html element
